@@ -1,0 +1,137 @@
+body {
+  font-family: 'Open Sans','Dejavu Sans','Roboto','arial','sans-serif';
+  color: #FFF;
+  background-image: url(images/bgb.png);
+  background-color: #000;
+  font-size: 14px;
+  line-height: 16px;
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  padding: 0px;
+}
+
+A:link {
+font-family: "Open Sans","lucida grande","Segoe UI",arial,verdana,"lucida sans unicode",tahoma,sans-serif;
+color: #FFF;              
+}
+
+A:visited {
+text-decoration: underline;
+color: #FFF;
+}
+
+A:active {
+color: #FFF;
+text-decoration: underline;
+}
+
+A:hover {
+text-decoration: underline;
+color: #FFF;
+}
+
+.keypad {margin:auto; margin-top:20px;}
+
+.keypad {
+vertical-align:middle;
+text-align:center;
+border:1px solid #000000;
+font-size:36px;
+font-weight:bold;
+width:70px;
+height:70px;
+cursor:pointer;
+background-color:#666666;
+color:#CCCCCC;}
+.keypad:hover {
+background-color:#999999;
+color:#FFFF00;
+}
+
+.display {
+width:120px;
+margin:10px auto auto auto;
+background-color:#000000;
+color:#CCCCCC;
+font-size:36px;
+border:1px solid #999999;
+}
+
+.message {
+text-align:center;
+color:#CCCCCC;
+font-size:36px;
+font-weight:bold;
+display:none;
+border: 0px;
+}
+
+#myProgress {
+  width: 100%;
+  background-color: #000;
+}
+
+#progress {
+  width: 0%;
+  height: 20px;
+  background-color: #FFF;
+}
+
+.BUTTON_KTC {
+width: 100px;
+height : 40px;
+border: solid #F3F3F3 0px;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+color: rgba(0, 0, 0, 0.76);
+font-family: 'Open Sans','lucida grande','Segoe UI',arial,verdana,'lucida sans unicode',tahoma,sans-serif;
+font-size: 12px;
+font-weight: 700;
+padding: 8px;
+background-color: #F3F3F3;
+text-shadow: 1px 0px 2px #B5B5B5;
+text-decoration: none;
+display: inline-block;
+cursor: pointer;
+text-align: center;
+}
+
+.BUTTON_KTC:hover {
+border: solid #F3F3F3 0px;
+background: #FFFFFF;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+text-decoration: none;
+}
+
+.BUTTON_KTCn {
+width: 100px;
+height : 40px;
+border: solid #474747 0px;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+color: rgba(0, 0, 0, 1);
+font-family: 'Open Sans','lucida grande','Segoe UI',arial,verdana,'lucida sans unicode',tahoma,sans-serif;
+font-size: 12px;
+font-weight: 700;
+padding: 8px;
+background-color: #474747;
+text-decoration: none;
+display: inline-block;
+cursor: pointer;
+text-align: center;
+}
+
+.BUTTON_KTCn:hover {
+border: solid #474747 0px;
+background: #919191;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+text-decoration: none;
+}

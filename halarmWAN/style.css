@@ -1,0 +1,68 @@
+body {
+  font-family: "Open Sans","lucida grande","Segoe UI",arial,verdana,"lucida sans unicode",tahoma,sans-serif;
+  color: #FFF;
+  background-image: url(images/bgb.png);
+  background-color: #000;
+  font-size: 14px;
+  line-height: 16px;
+  margin-left: 0px;
+  margin-top: 5px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  padding: 0px;
+}
+
+A:link {
+font-family: "Open Sans","lucida grande","Segoe UI",arial,verdana,"lucida sans unicode",tahoma,sans-serif;
+color: #FFF;              
+}
+
+A:visited {
+text-decoration: underline;
+color: #FFF;
+}
+
+A:active {
+color: #FFF;
+text-decoration: underline;
+}
+
+A:hover {
+text-decoration: underline;
+color: #FFF;
+}
+
+.keypad {margin:auto; margin-top:20px;}
+
+.keypad {
+vertical-align:middle;
+text-align:center;
+border:1px solid #000000;
+font-size:52px;
+font-weight:bold;
+width:160px;
+height:120px;
+cursor:pointer;
+background-color:#666666;
+color:#CCCCCC;}
+.keypad:hover {
+background-color:#999999;
+color:#FFFF00;
+}
+
+.display {
+width:160px;
+margin:10px auto auto auto;
+background-color:#000000;
+color:#CCCCCC;
+font-size:52px;
+border:1px solid #999999;
+}
+.message {
+text-align:center;
+color:#CCCCCC;
+font-size:52px;
+font-weight:bold;
+display:none;
+border: 0px;
+}
