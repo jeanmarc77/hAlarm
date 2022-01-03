@@ -19,6 +19,7 @@ if (json_last_error() == JSON_ERROR_NONE) {
 	include '../config/config.php';
 	include '../config/memory.php';
 	include '../config/tampers.php';
+	include '../config/notifications.php';
 	$cntt = count($T);
 	$goesoff= false;
 

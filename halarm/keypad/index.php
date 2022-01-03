@@ -23,8 +23,9 @@ if (!empty($_GET['scenario'])) {
 	$scenario = 'scenario0';
 }
 $cntsena = count($SCENARN);
-if (!empty($_GET['kpident'])) {
-	$kpident = $_GET['kpident'];
+
+if(isset($_COOKIE['kypident'])) {
+	$kpident = $_COOKIE['kypident'];
 } else {
 	$kpident = null;
 }
@@ -39,7 +40,7 @@ if (file_exists('../scripts/alarm.pid')) {
 		unlink('../scripts/alarm.pid');
 	}
 	if (!is_null($PID) && $startstop != 'arm' && $startstop != 'stop' && $startstop != 'cancel') {
-		header("Location: keyp.php?kpident=$kpident");
+		header("Location: keyp.php");
 	}
 } else {
 	$PID = null;
@@ -51,7 +52,6 @@ echo "
 <head>
 <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-<meta http-equiv='refresh' content='600'>
 <meta name='mobile-web-app-capable' content='yes'>
 <meta name='theme-color' content='#000'>
 <title>hAlarm LAN</title>
@@ -104,15 +104,15 @@ function updateit() {
 	document.getElementById('rSTAMP').innerHTML = json['stamp'];
 
 	if (json['status'] == 'Alarm') {
-	window.location.href = 'index.php?startstop=cancel&kpident=$kpident';";
+	window.location.href = 'index.php?startstop=cancel';";
 if (is_null($startstop)) {
 	echo "
 	} else if (json['status'] == 'Leaving') {
-	window.location.href = 'index.php?scenario=$scenario&kpident=$kpident';";
+	window.location.href = 'index.php?scenario=$scenario';";
 }
 echo "
 	} else if (json['status'] == 'Armed') {
-	window.location.href = 'keyp.php?scenario=$scenario&kpident=$kpident';
+	window.location.href = 'keyp.php?scenario=$scenario';
 	}
 	}).fail(function (xhr, status, error) {
 		document.getElementById('rstat').innerHTML = 'Error';
@@ -233,7 +233,7 @@ function closeFullscreen() {
 <div id='myProgress' align='center'><div id='progress'></div></div>
 <table border=0 cellspacing=0 cellpadding=0 align='left'>
 <tr><th width='50%' align=left>
-<h1>$lgKEYB</h1>
+<h1>$lgKEYB $kpident</h1>
 <h3><span id='rSTAMP'>--</span> - $lgSTAT : <span id='rstat'>--</span></h3>
 <h3><span id='messageSpan'></span></h3></th>
 </tr>
@@ -245,7 +245,6 @@ if (is_null($PID)) {
 }
 echo "
 <input type='hidden' name='scenario' value='$scenario'>
-<input type='hidden' name='kpident' value='$kpident'>
 </form><br>
 </th></tr>";
 if ($startstop == 'start' || $startstop == 'stop' || $startstop == 'cancel') {
@@ -282,7 +281,7 @@ if ($startstop == 'start' || $startstop == 'stop' || $startstop == 'cancel') {
 			echo "<audio controls autoplay hidden><source src='../snd/cancel.mp3' type='audio/mpeg' ></audio>
 			<script type='text/javascript'>
 			  setTimeout(function () {
-				window.location.href = 'index.php?scenario=$scenario&kpident=$kpident';
+				window.location.href = 'index.php?scenario=$scenario';
 			  }, 500);
 			</script>
 			";
@@ -294,14 +293,14 @@ if ($startstop == 'start') { // Go arming
 <script type='text/javascript'>
   document.getElementById('messageSpan').innerHTML = \"...$lgWAIT...\";
   setTimeout(function () {
-    window.location.href = 'index.php?startstop=arm&scenario=$scenario&kpident=$kpident';
+    window.location.href = 'index.php?startstop=arm&scenario=$scenario';
   }, 1000);
 </script>
 <audio controls autoplay hidden><source src='../snd/valid.mp3' type='audio/mpeg' ></audio>
 ";
 }
 if ($startstop == 'stop' && !is_null($PID)) { // Disarming
-	header("Location: index.php?startstop=stop&kpident=$kpident");
+	header("Location: index.php?startstop=stop");
 }
 if ($startstop == 'arm') {
 	$TENTR--;
@@ -312,13 +311,13 @@ var timeleft = $TENTR;
 var downloadTimer = setInterval(function(){
   $.getJSON('../programs/programlive.php', function(json){
 	if (json['status'] != 'Leaving') {
-	window.location.href = 'index.php?scenario=$scenario&kpident=$kpident';
+	window.location.href = 'index.php?scenario=$scenario';
 	}
   })
 
   if(timeleft <= 0){
     clearInterval(downloadTimer);
-    window.location.href = 'keyp.php?scenario=$scenario&kpident=$kpident';
+    window.location.href = 'keyp.php?scenario=$scenario';
   } else {
     document.getElementById('messageSpan').innerHTML = '$lgARM ' + timeleft + ' $lgSEC';
   }
@@ -373,13 +372,12 @@ for ($i = 0; $i < $cntsena; $i++) {
 echo "
 </select>
 <input type='hidden' name='startstop' value=null>
-<input type='hidden' name='kpident' value='$kpident'>
 </form>
 </td>
 <td align='left'><INPUT TYPE='button' class='BUTTON_KTC' onClick=\"location.href='histo.php'\" value='&#x25A4; $lgHISTO'></td>
 </tr><tr>
 <td align='right'><span id='screen'><INPUT TYPE='button' class='BUTTON_KTC' onclick='openFullscreen();' value='&#x21F1; $lgFULLS'></span></td>
-<td align='center'></td>
+<td align='center'><INPUT TYPE='button' class='BUTTON_KTC' onClick=\"location.href='kypident.php'\" value='&#x2710 Keypad id.'</td>
 <td align='left'><INPUT TYPE='button' class='BUTTON_KTC' onClick=\"location.href='debug.php'\" value='&#x221E; Debug'></td></tr>
 </table>
 </th></tr>

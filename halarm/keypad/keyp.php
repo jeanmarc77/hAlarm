@@ -11,13 +11,13 @@ include '../secure.php';
 include '../config/config.php';
 include '../config/lang.php';
 
-if (!empty($_GET['kpident'])) {
-	$kpident = $_GET['kpident'];
+if(isset($_COOKIE['kypident'])) {
+	$kpident = $_COOKIE['kypident'];
 } else {
 	$kpident = null;
 }
 if ($ip && !file_exists('../scripts/alarm.pid')) { // local network, not running
-	header("Location: index.php?kpident=$kpident");
+	header("Location: index.php");
 }
 if (!empty($_GET['fail'])) {
 	$fail = (int)$_GET['fail'];
@@ -44,7 +44,6 @@ $Tprogress = $TENTR*10;
 <head>
 <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-<meta http-equiv='refresh' content='600'>
 <meta name='theme-color' content='#000'>
 <title>hAlarm LAN</title>
 <META NAME='ROBOTS' CONTENT='NOINDEX, NOFOLLOW'>
@@ -112,7 +111,7 @@ if ($fail==0) {
 		}
 	}
 		if (typeof json['status'] === 'undefined') {
-		window.location.href = 'index.php?kpident=<?php echo $kpident;?>';
+		window.location.href = 'index.php';
 		}
 	}).fail(function (xhr, status, error) {
 		document.getElementById('rstat').innerHTML = 'Error';
@@ -200,15 +199,14 @@ clickdate = Date.now();
 var urlParams = new URLSearchParams(window.location.search);
 const scenario = urlParams.get('scenario')
 const fail = urlParams.get('fail')
-const kpident = urlParams.get('kpident')
 
 if (typeof scenario === 'undefined'|| !scenario) {
 	$.getJSON('../programs/programlive.php', function(json){
 	  var scenario = json['scenario'];
 	  if (typeof fail === 'undefined'|| !fail) {
-	  window.location.href = 'keyp.php?scenario=' + scenario + '&kpident=' + kpident; 
+	  window.location.href = 'keyp.php?scenario=' + scenario; 
 	  } else {
-	  window.location.href = 'keyp.php?scenario=' + scenario + '&fail=' + fail + '&kpident=' + kpident;
+	  window.location.href = 'keyp.php?scenario=' + scenario + '&fail=' + fail;
 	  }
 	})
 }
@@ -297,7 +295,6 @@ echo "
 <input type='text' name='code' value='' maxlength=4 class='display' readonly='readonly'>
 <input type='hidden' name='fail' value=$fail>
 <input type='hidden' name='scenario' value=$scenario>
-<input type='hidden' name='kpident' value='$kpident'>
 </form>";
 if ($fail>0 && $fail < $MAXFAIL) {
 	echo "<h2>Essai $fail</h2>";

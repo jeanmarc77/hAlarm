@@ -170,10 +170,10 @@ if (file_exists($filename)) {
 	$events = 'no event file found';
 }
 echo "</td></tr>
-<tr><td><h3>$lgHISTO :</h3>
+<tr><td><h3>$lgHISTO</h3>
 <textarea style='resize: none;background-color: #DCDCDC' cols=70 rows=25>$events</textarea>";
 if (file_exists($KYPMEM)) {
-echo "<h3>Keypad(s)</h3>";	
+echo "<h3>Keypad(s) seen</h3>";	
 	$data        = file_get_contents($KYPMEM);
 	$kbmemarray    = json_decode($data, true);
 	foreach (array_keys($kbmemarray) as $key) {

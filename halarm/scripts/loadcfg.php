@@ -35,6 +35,11 @@ if (is_readable("$ADMDIR/config/memory.php")) {
 } else {
 	die("Abording. Can't open memory.php.\n");
 }
+if (is_readable("$ADMDIR/config/notifications.php")) {
+	include "$ADMDIR/config/notifications.php";
+} else {
+	die("Abording. Can't open notifications.php.\n");
+}
 if (file_exists($MEMORY) && !is_writable($MEMORY)) {
 	die("Abording. Can't write $MEMORY.\n");
 }
@@ -104,6 +109,7 @@ unlink($KYPMEM);
 // Using automate
 if (!empty($AUTOMSECRET) && !empty($EMAIL)) {
 $automate = true;
+$cntkyp = count($KYP);
 } else {
 $automate = false;
 }

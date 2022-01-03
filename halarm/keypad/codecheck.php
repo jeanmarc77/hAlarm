@@ -11,6 +11,7 @@ include '../config/config.php';
 include '../config/memory.php';
 include '../config/automate.php';
 include '../secure.php';
+include '../config/kypcodes.php';
 
 if (!empty($_GET['scenario'])) {
 	$scenario = $_GET['scenario'];

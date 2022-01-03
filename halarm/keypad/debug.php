@@ -47,7 +47,7 @@ if (file_exists('../scripts/test.pid')) {
 	$PIDt = null;
 }
 
-if ($startstop == 'start' || $startstop == 'stop') {
+if ($startstop == 'start' || $startstop == 'stop' || $startstop == 'Test warning' || $startstop == 'Test alarm' || $startstop == 'Off alarm') {
 	$now = date($DATEFORMAT . ' H:i:s');
 	if ($startstop == 'start' && is_null($PIDt)) {
 		$command    = 'php ../scripts/tester.php' . ' >> ../data/alarm.err 2>&1 & echo $!; ';
@@ -71,6 +71,22 @@ if ($startstop == 'start' || $startstop == 'stop') {
 		}
 		$PIDt = null;
 		unlink($MEMORY);
+	}
+	if ($startstop == 'Test warning' && isset($WARNCOMMAND) && isset($WARNOFF)) {
+		exec($WARNCOMMAND);
+		sleep(10);
+		exec($WARNOFF);
+	}
+	if ($startstop == 'Test alarm' && isset($ALARMOFF)) {
+		$cnta = count($ALARMCOMMAND);
+		for ($i=0;$i<$cnta;$i++) {
+			if(isset($ALARMCOMMAND[$i])) {
+			exec($ALARMCOMMAND[$i]);
+			}
+		}
+	}
+	if ($startstop == 'Off alarm') {
+		exec($ALARMOFF);
 	}
 }
 $cnti = count($I);
@@ -215,7 +231,7 @@ echo "
 </tr>
 </table>";
 if (file_exists($KYPMEM)) {
-echo "<br><br><h3>Keypad(s) seen : </h3>";	
+echo "<br><br><h3>Keypad(s) seen</h3>";	
 	$data        = file_get_contents($KYPMEM);
 	$kbmemarray    = json_decode($data, true);
 	foreach (array_keys($kbmemarray) as $key) {
@@ -241,6 +257,18 @@ if (file_exists('../data/alarm.err')) {
 	}
 }
 echo "</textarea>
+<h3>Testing command(s)</h3>
+<form action='debug.php' method='GET'>";
+if ($startstop=='Test alarm') {
+	echo "<input type='submit' name='startstop' value='Off alarm'>";
+} else {
+	echo "<input type='submit' name='startstop' value='Test alarm' onclick=\"if(!confirm('This will activate the alarm, press again to stop')){return false;}\">";
+}
+echo "
+<input type='submit' name='startstop' value='Test warning' onclick=\"if(!confirm('This will activate the warning for 10 sec')){return false;}\">
+</form>	
+";
+echo "
 <h3>Walk by</h3>
 <textarea style='background-color: #DCDCDC' cols='100' rows='10'>";
 if (file_exists('../data/halarm_test.txt')) {
