@@ -1,6 +1,6 @@
 
 	Communication apps examples for hAlarm using an Arduino Leonardo.
-	Read out more on http://www.metern.org/halarm/
+	Read out more on https://github.com/jeanmarc77/hAlarm
 	--------
 
 	* reqalarm.py get the arduino detectors state and send relays commands using pyserial.
