@@ -2,9 +2,9 @@
  ║                                                                             ║
  ║                           - Home Alarm System -                             ║
  ║                                                                             ║
- ║             Version     : 0.4.4                                             ║
+ ║             Version     : xxxxx                                             ║
  ║             Made by     : Louviaux Jean-Marc                                ║
- ║             Last Update : 16/07/20                                          ║
+ ║             Last Update : xx/xx/xx                                          ║
  ║                                                                             ║
  ╚═════════════════════════════════════════════════════════════════════════════╝
  
@@ -33,7 +33,7 @@
  
  Support, Update & Contact ────────────────────────────────────────────────────
 
-  To get support, updates or contact please go to http://www.metern.org/halarm/
+  To get support, updates or contact please go to https://github.com/jeanmarc77/hAlarm/
 
  License & External copyrights ────────────────────────────────────────────────
 
