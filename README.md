@@ -1,5 +1,5 @@
 # What hAlarm can do for you ?
-hAlarm (stand for Home Alarme) is a small project to make a burglar alarm. It can recover an existing system by taking previous material such as detectors and alarm sirens but it could also be use on a new build installation.
+hAlarm (stand for Home Alarm) is a small project to make a burglar alarm. It can recover an existing system by taking previous material such as detectors and alarm sirens but it could also be use on a new build installation.
 
 It is web-based and run on top of a webserver using php. The front-end, the communication to read inputs and doing commands are purely software. It mean it may not be as reliable as a pure micro-controller system. But, i can reassure you, it's reliability will be more than enough for a residential.
 
