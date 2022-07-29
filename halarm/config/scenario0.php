@@ -11,7 +11,6 @@ if (!defined('checkaccess')) {die('Direct access not permitted');}
 
 // Main request command, must retrieve each inputs (I), outputs (O) and tampers (T) as JSON
 $REQCOMMAND="reqalarmeth -stat";
-$MAXREQ = 50; // Will auto kill if requests failed x times with central, set 0 to disable
 
 // Inputs, naming them as array
 $I[0] = 'Entrée'; //Z1
@@ -40,21 +39,4 @@ $ALARMOFF='reqalarmeth -roff';
 $WARNCOMMAND='reqalarmeth -r3'; // buzzer
 // off
 $WARNOFF='reqalarmeth -r3off';
-
-// Notification
-// Pushover
-$POAKEY= null;
-$POUKEY = null;
-// Telegram
-$TLGRTOK= null;
-$TLGRCID= null;
-
-// Keyboard code
-$KEYB[0] = '1234';
-$KEYB[1] = '0000';
-
-// User name
-$KEYU[0] = 'Invité';
-$KEYU[1] = 'JM';
-
 ?>

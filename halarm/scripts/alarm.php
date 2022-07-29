@@ -204,7 +204,8 @@ while (true) { // To infinity ... and beyond!
 					exec($ALARMCOMMAND[$i]);
 					}
 				}
-
+				
+				$stringData = "$now\tAlarm ! ($msg)\n\n";
 				if (!empty($POUKEY)) {
 					$pushover = pushover($POAKEY, $POUKEY, "hAlarm Warning", $stringData, 'updown');
 				}

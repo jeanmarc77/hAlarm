@@ -19,13 +19,4 @@ $TAMPCOMMAND[0] = null;
 
 // Tampers off, when all values are returned to 'off'
 $TAMPOFF='reqalarm -roff';
-
-// Notification
-// Pushover
-$POAKEY= null;
-$POUKEY = null;
-// Telegram
-$TLGRTOK= null;
-$TLGRCID= null;
-
 ?>

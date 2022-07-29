@@ -30,6 +30,8 @@ if (!empty($_GET['scenario'])) {
 }
 $cntsena = count($SCENARN);
 
+include "../halarm/config/$scenario.php";
+
 echo "
 <!DOCTYPE html>
 <html>
