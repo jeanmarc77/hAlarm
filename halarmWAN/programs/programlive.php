@@ -7,8 +7,8 @@
 
 
 define('checkaccess', TRUE);
-include '../config/config.php';
-include '../config/memory.php';
+include '../../halarm/config/config.php';
+include '../../halarm/config/memory.php';
 date_default_timezone_set($DTZ);
 
 if (file_exists($MEMORY)) {

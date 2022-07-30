@@ -7,9 +7,9 @@
 
 
 define('checkaccess', TRUE);
-include 'config/config.php';
-include 'config/memory.php';
-include 'config/lang.php';
+include '../halarm/config/config.php';
+include '../halarm/config/memory.php';
+include '../halarm/config/lang.php';
 
 if (!isset($_SERVER["PHP_AUTH_USER"])) {
 	$CURDIR = dirname(dirname(__FILE__));
