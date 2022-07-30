@@ -35,7 +35,11 @@ echo "
 <INPUT TYPE='button' onClick=\"location.href='index.php'\" value='&#x21A9; Back'>
 
 <INPUT type='submit' value='&#x2713 Save'>
-</form>
+</form>";
+if (!empty($_GET['ident'])) { 
+echo "<br>Saved $ident";
+}
+echo'
 </body>
-</html>";
+</html>';
 ?>
