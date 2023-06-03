@@ -152,7 +152,6 @@ if ($startstop == 'start' || $startstop == 'stop') {
 		}
 		$PID = null;
 		unlink($MEMORY);
-		unlink($KYPMEM);
 	}
 
 	echo "
