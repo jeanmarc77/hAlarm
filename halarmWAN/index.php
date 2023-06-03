@@ -173,7 +173,7 @@ if (file_exists($filename)) {
 }
 echo "</td></tr>
 <tr><td><h3>$lgHISTO</h3>
-<textarea style='resize: none;background-color: #DCDCDC' cols=70 rows=25>$events</textarea>";
+<textarea style='resize: none;background-color: #DCDCDC' cols=70 rows=10>$events</textarea>";
 if (file_exists($KYPMEM)) {
 echo "<h3>Keypad(s) seen</h3>";	
 	$data        = file_get_contents($KYPMEM);
@@ -184,7 +184,7 @@ echo "<h3>Keypad(s) seen</h3>";
 			$kypt   = date($DATEFORMAT . ' H:i:s', $kbmemarray[$key]['UTC']);
 			echo "<b>$key</b> $kypt ";
 			if ($nowutc - $kbmemarray[$key]['UTC'] > 360) {
-			echo '- lost';
+			echo ' (lost) ';
 			}
 		}
 	}

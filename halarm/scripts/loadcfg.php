@@ -102,8 +102,8 @@ for ($i=0;$i<$cnte;$i++) {
 }
 
 // Will track Keypads timers
-if (file_exists($KYPMEM)) {
-unlink($KYPMEM);
+if (!file_exists($KYPMEM)) {
+touch($KYPMEM);
 }
 
 // Using automate
@@ -232,5 +232,10 @@ if (file_exists("$ADMDIR/data/events.txt")) {
 	}
 } else {
 	file_put_contents("$ADMDIR/data/events.txt", '');
+}
+
+if($automate) { // Wake keypad(s)
+	$automatemsg['cmd'] = 'armed';
+	pushautomate($AUTOMSECRET, $EMAIL, json_encode($automatemsg));
 }
 ?>

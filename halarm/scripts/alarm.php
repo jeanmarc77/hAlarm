@@ -272,7 +272,7 @@ while (true) { // To infinity ... and beyond!
 						logevents("$now\tKeypad $key not active, restarting\n\n");
 						pushautomate($AUTOMSECRET, $EMAIL, json_encode($automatemsg));
 					} else {
-						logevents("$now\tKeypad not active $key\n\n");
+						logevents("$now\tKeypad $key not active\n\n");
 					}
 				}
 			}
@@ -296,7 +296,7 @@ while (true) { // To infinity ... and beyond!
 				if (!empty($TLGRTOK)) {
 					$telegram = telegram($TLGRTOK, $TLGRCID, "hAlarm $stringData\n\n");
 				}
-				if($automate) { // allow to sleep
+				if($automate) { // keep awake
 					$automatemsg['cmd'] = 'armed';
 					pushautomate($AUTOMSECRET, $EMAIL, json_encode($automatemsg));
 				}
