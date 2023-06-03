@@ -243,7 +243,7 @@ while (true) { // To infinity ... and beyond!
 		$memarray['msg'] .= " - $lg5T";
 		// Keypads alive test
 		$PIDd = filemtime("$ADMDIR/scripts/alarm.pid");
-		if ($cntkyp > 0 && $nowutc - $PIDd > $TENTR) {
+		if ($cntkyp > 0 && $nowutc > $PIDd + $TENTR) {
 			$kpmsg = '';
 			if	(file_exists($KYPMEM)) {
 				$data        = file_get_contents($KYPMEM);
