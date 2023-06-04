@@ -36,7 +36,7 @@ if (json_last_error() == JSON_ERROR_NONE) {
 
 		if (!$tmemarray[$i] && $jsonarray["T$i"]=='on' && isset($T[$i])) {
 			$tmemarray[$i] = true;
-			$stringData = "$now\tTamper default $T[$i]\n\n";
+			$stringData = "$now\tTamper default ($T[$i])\n\n";
 			logevents($stringData);
 			if (!empty($POUKEY)) {
 				$pushover = pushover($POAKEY, $POUKEY, "hAlarm Warning", $stringData);
@@ -53,7 +53,7 @@ if (json_last_error() == JSON_ERROR_NONE) {
 		if ($tmemarray[$i] && $jsonarray["T$i"]=='off') {
 			$goesoff = true;
 			$tmemarray[$i] = false;
-			$stringData = "$now\tTamper default off $T[$i]\n\n";
+			$stringData = "$now\tTamper default off ($T[$i])\n\n";
 			logevents($stringData);
 			if (!empty($POUKEY)) {
 				$pushover = pushover($POAKEY, $POUKEY, "hAlarm", $stringData);
