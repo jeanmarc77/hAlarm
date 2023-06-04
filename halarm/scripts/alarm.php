@@ -71,7 +71,7 @@ while (true) { // To infinity ... and beyond!
 			if (isset($memarray["I$i"]) && $memarray["I$i"]!='off' && $memarray["I$i"]!='on' && !$ierr[$i]) {
 				$ierr[$i]= true;
 				$val = $memarray["I$i"];
-				$stringData = "$now\tWrong value for $I[$i]: $val\n\n";
+				$stringData = "$now\tWrong value ($I[$i]: $val)\n\n";
 				logevents($stringData);
 			} else {
 				$ierr[$i]= false;
@@ -81,7 +81,7 @@ while (true) { // To infinity ... and beyond!
 			if (isset($memarray["O$i"]) && $memarray["O$i"]!='off' && $memarray["O$i"]!='on' && !$oerr[$i]) {
 				$oerr[$i] = true;
 				$val = $memarray['O$i'];
-				$stringData = "$now\tWrong value for $O[$i]: $val\n\n";
+				$stringData = "$now\tWrong value ($O[$i]: $val)\n\n";
 				logevents($stringData);
 			} else {
 				$oerr[$i] = false;
@@ -131,7 +131,7 @@ while (true) { // To infinity ... and beyond!
 						$flagwarn = true;
 						$memarray['status'] = 'Warn';
 						$memarray['msg'] = "$lgENTR";
-						logevents("$now\t$I[$entrance] entering\n\n");
+						logevents("$now\t($I[$entrance]) entering\n\n");
 						$INWARN   = true;
 						$warntime = strtotime(date('Ymd H:i:s'));
 						if(isset($WARNCOMMAND)) {
@@ -144,7 +144,7 @@ while (true) { // To infinity ... and beyond!
 					}
 				} else { // leaving
 					if (!$flagleav) {
-						logevents("$now\t$I[$entrance] leaving\n\n");
+						logevents("$now\t($I[$entrance]) leaving\n\n");
 					}
 				}
 			}
@@ -259,20 +259,20 @@ while (true) { // To infinity ... and beyond!
 							if($automate) {
 								$automatemsg['cmd'] = 'restart';
 								$automatemsg['ident'] = $key;
-								logevents("$now\tConnection lost with keypad $key, restarting\n\n");
+								logevents("$now\tConnection lost with keypad ($key), restarting\n\n");
 								pushautomate($AUTOMSECRET, $EMAIL, json_encode($automatemsg));
 							} else {
-								logevents("$now\tConnection lost with keypad $key\n\n");
+								logevents("$now\tConnection lost with keypad ($key)\n\n");
 							}
 					} 
 				} else {
 					if($automate) {
 						$automatemsg['cmd'] = 'restart';
 						$automatemsg['ident'] = $key;
-						logevents("$now\tKeypad $key not active, restarting\n\n");
+						logevents("$now\tKeypad ($key) not active, restarting\n\n");
 						pushautomate($AUTOMSECRET, $EMAIL, json_encode($automatemsg));
 					} else {
-						logevents("$now\tKeypad $key not active\n\n");
+						logevents("$now\tKeypad ($key) not active\n\n");
 					}
 				}
 			}
