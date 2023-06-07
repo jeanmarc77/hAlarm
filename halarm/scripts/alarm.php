@@ -49,7 +49,7 @@ while (true) { // To infinity ... and beyond!
 		if (!$flagalarm && !$flagwarn && !$flagoff  && !$flagleav) {
 			$memarray['status'] = 'Armed';
 			$memarray['msg'] = "$lgUNDS";
-			if(!$flagarm && $automate && $LCKARM) {
+			if(!$flagarm && $automate) {
 				$flagarm = true;
 				$automatemsg['cmd'] = 'armed';
 				pushautomate($AUTOMSECRET, $EMAIL, json_encode($automatemsg));
