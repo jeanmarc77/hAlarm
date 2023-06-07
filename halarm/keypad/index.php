@@ -59,6 +59,9 @@ echo "
 <link rel='icon' type='image/x-icon' href='../images/favicon.ico'>
 <link rel='shortcut icon' sizes='192x192' href='../images/burglar192.png'>
 <link rel='stylesheet' href='../style.css' type='text/css'>
+<link rel='preload' as='audio' href='../snd/cancel.mp3'>
+<link rel='preload' as='audio' href='../snd/valid.mp3'>
+<link rel='preload' as='audio' href='../snd/leave2.mp3'>
 <script src='https://code.jquery.com/jquery-3.4.1.min.js' integrity='sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=' crossorigin='anonymous'></script>
 <style>
   div.hideme {";

@@ -49,6 +49,8 @@ $Tprogress = $TENTR*10;
 <META NAME='ROBOTS' CONTENT='NOINDEX, NOFOLLOW'>
 <link rel='icon' type='image/x-icon' href='../images/favicon.ico'>
 <link rel='stylesheet' href='../style.css' type='text/css'>
+<link rel='preload' as='audio' href='../snd/sweetwarn.mp3'>
+<link rel='preload' as='audio' href='../snd/alarm.mp3'>
 <script src='https://code.jquery.com/jquery-3.4.1.min.js' integrity='sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=' crossorigin='anonymous'></script>
 <style>
   div.hideme {

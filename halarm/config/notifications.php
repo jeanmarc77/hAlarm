@@ -4,8 +4,9 @@ if (!defined('checkaccess')) {die('Direct access not permitted');}
 
 // Notifications
 // Pushover
-//$POAKEY= null;
-//$POUKEY = null;
+//$POAKEY= '';
+//$POUKEY = '';
 // Telegram
-//$TLGRTOK= null;
+//$TLGRTOK= '';
+//$TLGRCID= null;
 ?>

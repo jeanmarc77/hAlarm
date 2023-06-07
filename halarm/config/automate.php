@@ -7,12 +7,4 @@ if (!defined('checkaccess')) {die('Direct access not permitted');}
 
 $AUTOMSECRET = null;
 $EMAIL = null;
-
-// Allow keypad(s) to lock screen to save power
-$LCKARM = true; // When armed, it will send awake cmd on leaving, entrance dectection and alarm
-$LCKOFF = true; // When halarm don't run 
-
-// Set active keypads, respect the case
-$KYP[0] = 'keypad';
-//$KYP[1] = 'test';
 ?>
