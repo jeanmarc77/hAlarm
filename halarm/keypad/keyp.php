@@ -53,6 +53,7 @@ $Tprogress = $TENTR*10;
 <link rel='preload' as='audio' href='../snd/sweetwarn.mp3'>
 <link rel='preload' as='audio' href='../snd/alarm.mp3'>
 <link rel='preload' as='audio' href='../snd/bleep.mp3'>
+<link rel='preload' as='audio' href='../snd/metro.mp3'>
 <script src='https://code.jquery.com/jquery-3.4.1.min.js' integrity='sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=' crossorigin='anonymous'></script>
 <style>
   div.hideme {
@@ -78,6 +79,7 @@ $(document).ready(function()
 $('#progress').hide();
 var once = false;
 var onca = false;
+document.getElementById('rsnd').innerHTML = "<audio controls autoplay hidden><source src='../snd/metro.mp3' type='audio/mpeg'></audio>"
 function updateit() {
 	$.getJSON('../programs/programlive.php', function(json){
 	if (typeof json['msg'] === 'undefined') {
@@ -222,6 +224,7 @@ function addCode(key){
 		code.value = code.value + key;
 	}
 	if(code.value.length == 4){
+		document.getElementById('rsnd').innerHTML = "<audio controls autoplay hidden><source src='../snd/valid.mp3' type='audio/mpeg'></audio>"
 		document.getElementById("message").style.display = "block";
 		setTimeout(submitForm,500);
 	}
