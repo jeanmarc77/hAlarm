@@ -20,6 +20,7 @@ if ($ip && !file_exists('../scripts/alarm.pid')) { // local network, not running
 	header("Location: index.php");
 }
 if (!empty($_GET['fail'])) {
+
 	$fail = (int)$_GET['fail'];
 	if ($fail >= $MAXFAIL) {
 		sleep($MAXFAIL);
@@ -51,6 +52,7 @@ $Tprogress = $TENTR*10;
 <link rel='stylesheet' href='../style.css' type='text/css'>
 <link rel='preload' as='audio' href='../snd/sweetwarn.mp3'>
 <link rel='preload' as='audio' href='../snd/alarm.mp3'>
+<link rel='preload' as='audio' href='../snd/bleep.mp3'>
 <script src='https://code.jquery.com/jquery-3.4.1.min.js' integrity='sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=' crossorigin='anonymous'></script>
 <style>
   div.hideme {
@@ -216,6 +218,7 @@ if (typeof scenario === 'undefined'|| !scenario) {
 function addCode(key){
 	var code = document.forms[0].code;
 	if(code.value.length < 4){
+		document.getElementById('rsnd').innerHTML = "<audio controls autoplay hidden><source src='../snd/bleep.mp3' type='audio/mpeg'></audio>"
 		code.value = code.value + key;
 	}
 	if(code.value.length == 4){
@@ -298,6 +301,7 @@ echo "
 <input type='hidden' name='fail' value=$fail>
 <input type='hidden' name='scenario' value=$scenario>
 </form>";
+
 if ($fail>0 && $fail < $MAXFAIL) {
 	echo "<h2>Essai $fail</h2>";
 }

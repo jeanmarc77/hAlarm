@@ -9,7 +9,6 @@
 define('checkaccess', TRUE);
 include '../config/config.php';
 include '../config/memory.php';
-include '../config/automate.php';
 include '../secure.php';
 include '../config/kypcodes.php';
 
@@ -19,20 +18,6 @@ if (!empty($_GET['scenario'])) {
 	die('not scenario');
 }
 include "../config/$scenario.php";
-
-function pushautomate($AUTOMSECRET, $EMAIL, $msg) // Automate
-{
-	$payload = json_encode(array( 'secret'=> $AUTOMSECRET, 'to' => $EMAIL, 'device' => null, 'priority' => 'normal', 'payload' => "$msg"));
-	$ch = curl_init('llamalab.com/automate/cloud/message');
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT_MS, 3000); // error
-	curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-	curl_setopt($ch, CURLOPT_POSTFIELDS, $payload ); // payload
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true );
-	$result = curl_exec($ch);
-	curl_close($ch);
-}
 
 if (!empty($_GET['code'])) {
 	$code = $_GET['code'];
@@ -76,10 +61,6 @@ if ($check) {
 		file_put_contents('../data/events.txt', $stringData);
 		$stringData = "$now\tStopping debug on keypad LAN code by $name ($PID)\n\n";
 		file_put_contents('../data/alarm.err', $stringData, FILE_APPEND);
-		if (!empty($AUTOMSECRET) && !empty($EMAIL) && $LCKOFF) {
-				$automatemsg['cmd'] = 'sleep';
-				pushautomate($AUTOMSECRET, $EMAIL, json_encode($automatemsg));
-		}
 	}
 	$PID = null;
 	unlink($MEMORY);
