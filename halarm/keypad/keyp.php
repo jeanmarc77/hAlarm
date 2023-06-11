@@ -190,7 +190,7 @@ updatenight();
 setInterval(updatenight, 18000);
 
 screensaver();
-setInterval(screensaver, 60000);
+setInterval(screensaver, 180000);
 
 updateit();
 setInterval(updateit, 1000);

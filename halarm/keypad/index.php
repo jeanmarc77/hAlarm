@@ -195,7 +195,7 @@ setInterval(alive, 30000);
 if ($startstop != 'arm') {
 	echo "$('#progress').hide();
 screensaver();
-setInterval(screensaver, 60000);
+setInterval(screensaver, 300000);
 ";
 }
 echo "});
@@ -281,7 +281,7 @@ if ($startstop == 'start' || $startstop == 'stop' || $startstop == 'cancel') {
 			if (file_exists($MEMORY)) {
 				unlink($MEMORY);
 			}
-			echo "<audio controls autoplay hidden><source src='../snd/cancel.mp3' type='audio/mpeg' ></audio>
+			echo "<audio controls autoplay hidden><source src='../snd/cancel.mp3' type='audio/mpeg'></audio>
 			<script type='text/javascript'>
 			  setTimeout(function () {
 				window.location.href = 'index.php?scenario=$scenario';
@@ -299,7 +299,7 @@ if ($startstop == 'start') { // Go arming
     window.location.href = 'index.php?startstop=arm&scenario=$scenario';
   }, 1000);
 </script>
-<audio controls autoplay hidden><source src='../snd/valid.mp3' type='audio/mpeg' ></audio>
+<audio controls autoplay hidden><source src='../snd/valid.mp3' type='audio/mpeg'></audio>
 ";
 }
 if ($startstop == 'stop' && !is_null($PID)) { // Disarming
@@ -344,7 +344,7 @@ function frame() {
 }
 }
 </script>
-<audio controls autoplay hidden loop><source src='../snd/leave2.mp3' type='audio/mpeg' ></audio>
+<audio controls autoplay hidden loop><source src='../snd/leave2.mp3' type='audio/mpeg'></audio>
 ";
 }
 if ($startstop == 'cancel' && !is_null($PID)) {
