@@ -39,6 +39,10 @@ echo "
 if (!empty($_GET['ident'])) { 
 echo "<br>Saved $ident";
 }
+if ($ident == 'default') {
+echo '<br>Please allow cookies !!';
+print_r($_COOKIE);
+}
 echo'
 </body>
 </html>';

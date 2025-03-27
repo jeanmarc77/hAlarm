@@ -38,7 +38,7 @@ if (file_exists('../scripts/alarm.pid')) {
 		$data = json_encode($kbmemarray);
 		file_put_contents($KYPMEM, $data);
 	} 
-} elseif (file_exists($KYPMEM) && !empty($AUTOMSECRET) && !empty($EMAIL)) { // Allow sleeping Keypads when not running
+} elseif (!file_exists('../scripts/alarm.pid' && file_exists($KYPMEM) && !empty($AUTOMSECRET) && !empty($EMAIL))) { // Allow sleeping Keypads when not running
 	$nowutc = strtotime(date('Ymd H:i:s'));
 	$cntkyp = count($KYP);
 	$data        = file_get_contents($KYPMEM);
