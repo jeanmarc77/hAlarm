@@ -49,11 +49,6 @@ while (true) { // To infinity ... and beyond!
 		if (!$flagalarm && !$flagwarn && !$flagoff  && !$flagleav) {
 			$memarray['status'] = 'Armed';
 			$memarray['msg'] = "$lgUNDS";
-			if(!$flagarm && $automate) {
-				$flagarm = true;
-				$automatemsg['cmd'] = 'armed';
-				pushautomate($AUTOMSECRET, $EMAIL, json_encode($automatemsg));
-			}
 		}
 		if ($comlost) {
 			$comlost    = false;
@@ -207,7 +202,7 @@ while (true) { // To infinity ... and beyond!
 				
 				$stringData = "$now\tAlarm ! ($msg)\n\n";
 				if (!empty($POUKEY)) {
-					$pushover = pushover($POAKEY, $POUKEY, "hAlarm Warning", $stringData, 'updown');
+					$pushover = pushover($POAKEY, $POUKEY, "hAlarm Warning", $stringData, 'updown', 1);
 				}
 				if (!empty($TLGRTOK)) {
 					$telegram = telegram($TLGRTOK, $TLGRCID, "hAlarm $stringData\n\n");
@@ -228,7 +223,7 @@ while (true) { // To infinity ... and beyond!
 				$stringData = "$now\tAuto off alarm ! ($TAOFF sec)\n\n";
 				logevents($stringData);
 				if (!empty($POUKEY)) {
-					$pushover = pushover($POAKEY, $POUKEY, "hAlarm Warning", $stringData, 'spacealarm');
+					$pushover = pushover($POAKEY, $POUKEY, "hAlarm Warning", $stringData, 'spacealarm', 1);
 				}
 				if (!empty($TLGRTOK)) {
 					$telegram = telegram($TLGRTOK, $TLGRCID, "hAlarm $stringData\n\n");
@@ -254,22 +249,26 @@ while (true) { // To infinity ... and beyond!
 				$key = $KYP[$i];
 				if (isset($kbmemarray[$key]['UTC'])) {
 					if ($nowutc - $kbmemarray[$key]['UTC'] > 360) {
-							$kbflag = true;
 							$kpmsg .= $key .' ';
 							if($automate) {
 								$automatemsg['cmd'] = 'restart';
 								$automatemsg['ident'] = $key;
+								if (!$kbflag) {
 								logevents("$now\tConnection lost with keypad ($key), restarting\n\n");
+								}
 								pushautomate($AUTOMSECRET, $EMAIL, json_encode($automatemsg));
 							} else {
 								logevents("$now\tConnection lost with keypad ($key)\n\n");
 							}
+							$kbflag = true;
 					} 
 				} else {
 					if($automate) {
 						$automatemsg['cmd'] = 'restart';
 						$automatemsg['ident'] = $key;
-						logevents("$now\tKeypad ($key) not active, restarting\n\n");
+						if (!$kbflag) {
+						logevents("$now\tKeypad ($key) not active, starting\n\n");
+						}
 						pushautomate($AUTOMSECRET, $EMAIL, json_encode($automatemsg));
 					} else {
 						logevents("$now\tKeypad ($key) not active\n\n");
@@ -279,10 +278,10 @@ while (true) { // To infinity ... and beyond!
 						
 			if ($kbflag && $kpmsg != $prevkpmsg && !empty($kpmsg)) {
 				$stringData = "$now\tConnection lost with keypad(s) $kpmsg\n\n";
-				if (!empty($POUKEY)) {
+				if (!empty($POUKEY) && $WCLK) {
 					$pushover = pushover($POAKEY, $POUKEY, "hAlarm Warning", $stringData, 'intermission');
 				}
-				if (!empty($TLGRTOK)) {
+				if (!empty($TLGRTOK) && $WCLK) {
 					$telegram = telegram($TLGRTOK, $TLGRCID, "hAlarm $stringData\n\n");
 				}
 				$prevkpmsg = $kpmsg;
@@ -290,15 +289,11 @@ while (true) { // To infinity ... and beyond!
 				$kbflag = false;
 				$stringData = "$now\tConnection restored with keypad(s)\n\n";
 				logevents($stringData);
-				if (!empty($POUKEY)) {
+				if (!empty($POUKEY) && $WCLK) {
 					$pushover = pushover($POAKEY, $POUKEY, "hAlarm", $stringData, 'gamelan');
 				}
-				if (!empty($TLGRTOK)) {
+				if (!empty($TLGRTOK) && $WCLK) {
 					$telegram = telegram($TLGRTOK, $TLGRCID, "hAlarm $stringData\n\n");
-				}
-				if($automate) { // keep awake
-					$automatemsg['cmd'] = 'armed';
-					pushautomate($AUTOMSECRET, $EMAIL, json_encode($automatemsg));
 				}
 			}
 		} 

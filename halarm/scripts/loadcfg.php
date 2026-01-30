@@ -121,7 +121,7 @@ $automate = false;
  * @param unknown $title
  * @param unknown $msg
  */
-function pushover($aid, $uid, $title, $msg, $snd) // Push-over
+function pushover($aid, $uid, $title, $msg, $snd, $prio = 0) // Push-over
 {
 	curl_setopt_array($ch = curl_init(), array(
 			CURLOPT_URL => 'https://api.pushover.net/1/messages.json',
@@ -132,7 +132,8 @@ function pushover($aid, $uid, $title, $msg, $snd) // Push-over
 				'user' => "$uid",
 				'title' => "$title",
 				'message' => "$msg",
-				'sound' => "$snd" 
+				'sound' => "$snd" ,
+				'priority' => $prio
 			)
 		));
 	curl_exec($ch);
